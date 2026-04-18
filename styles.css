@@ -9,6 +9,7 @@ h1{
 }
 
 .container {
+    max-width: 600px;
     margin:auto;
     background: rgb(80, 191, 243);
     padding:20px;
