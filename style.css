@@ -1,0 +1,14 @@
+body{
+    font-family: Arial,San-serif;
+    background: local;
+    padding:20px;
+}
+
+h1{
+    text-align: center;
+}
+
+.container {
+    margin:auto;
+    background: white;
+}
