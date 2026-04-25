@@ -28,3 +28,12 @@ subscriptions.push({
  clearForm();
     }
 }
+
+function render(){
+    const list=document.getElementById("list");
+    const totalDisplay=getElementById("total");
+
+
+    list.innerHTML="";
+    let total=0;
+}
