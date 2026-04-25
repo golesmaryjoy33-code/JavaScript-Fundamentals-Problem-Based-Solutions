@@ -9,7 +9,7 @@ function addSubscription() {
         const used= document.getElementById("used").value;
 
 
-if (!name || isNan(cost)){
+if (!name || isNa(cost)){
     alert ("Please fill all fields!");
     return;
 }
