@@ -51,6 +51,6 @@ function render(){
         list.appendChild(div);
     });
 
-
-    
+    totalDisplay.innerHTML=`Total Monthly Burn: $${total.toFixed(2)}`;
 }
+
