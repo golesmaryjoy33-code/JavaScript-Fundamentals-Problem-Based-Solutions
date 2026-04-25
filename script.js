@@ -54,3 +54,7 @@ function render(){
     totalDisplay.innerHTML=`Total Monthly Burn: $${total.toFixed(2)}`;
 }
 
+function clearForm(){
+    document.getElementById("name").value="";
+    document.getElementById("cost").value="";
+}
