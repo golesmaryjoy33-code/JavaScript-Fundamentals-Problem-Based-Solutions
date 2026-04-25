@@ -3,10 +3,10 @@ let subscriptions = [];
 function addSubscription() {
 
     function addSubscription() {
-        const name= document.getElementById("name").ariaValueMax;
+        const name= document.getElementById("name").value;
         const cost= parseFloat(document.getElementById("cost").value);
-        const cycle= document.getElementById("cycle").ariaValueMax;
-        const used= document.getElementById("used").ariaValueMax;
+        const cycle= document.getElementById("cycle").value;
+        const used= document.getElementById("used").value;
 
 
 if (!name || isNan(cost)){
