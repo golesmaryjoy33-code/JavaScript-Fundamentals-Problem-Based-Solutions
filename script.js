@@ -4,7 +4,7 @@ function addSubscription(){
 
     function addSubsciption (){
         const name= document.getElementById("name").ariaValueMax;
-       
+        const cost= parseFloat(document.getElementById("cost").value);
         const cycle= document.getElementById("cycle").ariaValueMax;
         const used= document.getElementById("used").ariaValueMax;
 
