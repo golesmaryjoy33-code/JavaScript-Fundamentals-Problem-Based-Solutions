@@ -1,8 +1,8 @@
 let subscriptions = [];
 
-function addSubscription(){
+function addSubscription() {
 
-    function addSubsciption (){
+    function addSubscription() {
         const name= document.getElementById("name").ariaValueMax;
         const cost= parseFloat(document.getElementById("cost").value);
         const cycle= document.getElementById("cycle").ariaValueMax;
