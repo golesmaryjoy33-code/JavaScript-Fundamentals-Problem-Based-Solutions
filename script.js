@@ -36,4 +36,21 @@ function render(){
 
     list.innerHTML="";
     let total=0;
+
+    subscriptions.forEach((sub, index) => {
+        total += sub.monthlyCost;
+
+        if (sub.used ==="no"){
+            div.classList.add("unused");
+        }
+        div.innerHTML=`
+        <strong>${sub.name}</strong><br>
+        $${sub.monthlyCost.toFixed(2)}/month
+        `;
+
+        list.appendChild(div);
+    });
+
+
+    
 }
