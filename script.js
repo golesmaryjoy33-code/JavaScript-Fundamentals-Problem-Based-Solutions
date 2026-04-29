@@ -50,13 +50,13 @@ function render(){
         }
         div.innerHTML=`
         <strong>${sub.name}</strong><br>
-        $${sub.monthlyCost.toFixed(2)}/month
+        $${sub.monthlyCost.toFixed(2)} / month
         `;
 
         list.appendChild(div);
     });
 
-    totalDisplay.innerHTML=`Total Monthly Burn: $${total.toFixed(2)}`;
+    totalDisplay.innerText=`Total Monthly Burn: $${total.toFixed(2)}`;
 }
 
 function clearForm(){
