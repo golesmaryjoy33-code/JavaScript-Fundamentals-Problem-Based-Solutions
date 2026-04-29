@@ -31,7 +31,7 @@ subscriptions.push({
 
 function render(){
     const list=document.getElementById("list");
-    const totalDisplay=getElementById("total");
+    const totalDisplay=document.getElementById("total");
 
 
     list.innerHTML="";
