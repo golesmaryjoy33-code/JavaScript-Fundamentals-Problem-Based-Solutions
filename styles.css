@@ -24,6 +24,9 @@ input, select, button{
     border-radius: 10px;
     border: 1px solid #ccc;
 }
+input {
+width: 96%;
+}
 
 button{
     background: #007bff;
