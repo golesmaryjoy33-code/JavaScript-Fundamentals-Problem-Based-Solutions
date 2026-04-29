@@ -40,6 +40,11 @@ function render(){
     subscriptions.forEach((sub, index) => {
         total += sub.monthlyCost;
 
+
+     const div = document.createElement("div");
+        div.className = "item";
+
+
         if (sub.used ==="no"){
             div.classList.add("unused");
         }
