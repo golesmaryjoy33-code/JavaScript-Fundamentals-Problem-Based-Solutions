@@ -21,9 +21,9 @@ subscriptions.push({
     name,
     monthlyCost,
     used
-
-
 });
+
+
  render();
  clearForm();
     }
