@@ -24,16 +24,17 @@ subscriptions.push({
 
  render();
  clearForm();
-    }
+    
 }
 
+
 function render(){
-    const list=document.getElementById("list");
-    const totalDisplay=document.getElementById("total");
+    const list = document.getElementById("list");
+    const totalDisplay = document.getElementById("total");
 
 
     list.innerHTML="";
-    let total=0;
+    let total = 0;
 
     subscriptions.forEach((sub, index) => {
         total += sub.monthlyCost;
@@ -43,9 +44,10 @@ function render(){
         div.className = "item";
 
 
-        if (sub.used ==="no"){
+        if (sub.used === "no"){
             div.classList.add("unused");
         }
+        
         div.innerHTML=`
         <strong>${sub.name}</strong><br>
         $${sub.monthlyCost.toFixed(2)} / month
