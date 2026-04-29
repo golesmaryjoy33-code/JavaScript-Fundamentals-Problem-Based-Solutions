@@ -1,7 +1,5 @@
 let subscriptions = [];
 
-function addSubscription() {
-
     function addSubscription() {
         const name= document.getElementById("name").value;
         const cost= parseFloat(document.getElementById("cost").value);
