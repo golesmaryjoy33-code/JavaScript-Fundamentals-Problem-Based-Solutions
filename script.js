@@ -21,6 +21,15 @@ subscriptions.push({
     used
 });
 
+//Add datalist for subscriptions
+const datalist= document.getElementById("plans");
+const exists = [...datalist.option].some(opt => opt.value === name)
+
+if(!exists){
+    const option = document.createElement("option");
+    option.value= name;
+    datalist.appendChild(option);
+}
 
  render();
  clearForm();
