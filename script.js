@@ -1,13 +1,13 @@
 let subscriptions = [];
 
     function addSubscription() {
-        const name= document.getElementById("name").value;
-        const cost= parseFloat(document.getElementById("cost").value);
-        const cycle= document.getElementById("cycle").value;
-        const used= document.getElementById("used").value;
+        const name = document.getElementById("name").value;
+        const cost = parseFloat(document.getElementById("cost").value);
+        const cycle = document.getElementById("cycle").value;
+        const used = document.getElementById("used").value;
 
 
-if (!name || isNaN(cost)){
+if (!name || isNaN(cost)) -{
     alert ("Please fill all fields!");
     return;
 }
@@ -25,7 +25,7 @@ subscriptions.push({
 const datalist= document.getElementById("plans");
 const exists = [...datalist.options].some(opt => opt.value === name);
 
-if(!exists){
+if(!exists) {
     const option = document.createElement("option");
     option.value = name;
     datalist.appendChild(option);
