@@ -1,74 +1,205 @@
 let subscriptions = [];
 
-    function addSubscription() {
-        const name = document.getElementById("name").value;
-        const cost = parseFloat(document.getElementById("cost").value);
-        const cycle = document.getElementById("cycle").value;
-        const used = document.getElementById("used").value;
+function addSubscription(){
 
+    const name = document.getElementById("name").value;
+    const cost = parseFloat(document.getElementById("cost").value);
+    const category = document.getElementById("category").value;
+    const renewal = document.getElementById("renewal").value;
 
-if (!name || isNaN(cost)) -{
-    alert ("Please fill all fields!");
-    return;
+    if(name === "" || isNaN(cost) || renewal === ""){
+        alert("Please fill in all fields!");
+        return;
+    }
+
+    const subscription = {
+        id: Date.now(),
+        name,
+        cost,
+        category,
+        renewal,
+        status:"Active"
+    };
+
+    subscriptions.push(subscription);
+
+    renderSubscriptions();
+    updateSummary();
+
+    document.getElementById("name").value = "";
+    document.getElementById("cost").value = "";
+    document.getElementById("renewal").value = "";
 }
 
-//normalize the cost to monthly
-let monthlyCost = cycle === "yearly"? cost / 12: cost;
+function renderSubscriptions(){
 
-subscriptions.push({
-    name,
-    monthlyCost,
-    used
-});
+    const list = document.getElementById("subscriptionList");
 
-//Add datalist for subscriptions
-const datalist= document.getElementById("plans");
-const exists = [...datalist.options].some(opt => opt.value === name);
+    list.innerHTML = "";
 
-if(!exists) {
-    const option = document.createElement("option");
-    option.value = name;
-    datalist.appendChild(option);
-}
+    subscriptions.forEach(sub => {
 
- render();
- clearForm();
-    
-}
+        const today = new Date();
+        const renewalDate = new Date(sub.renewal);
 
+        const diffTime = renewalDate - today;
 
-function render(){
-    const list = document.getElementById("list");
-    const totalDisplay = document.getElementById("total");
+        const diffDays = Math.ceil(
+            diffTime / (1000 * 60 * 60 * 24)
+        );
 
+        const card = document.createElement("div");
 
-    list.innerHTML="";
-    let total = 0;
+        card.classList.add("subscription-card");
 
-    subscriptions.forEach((sub, index) => {
-        total += sub.monthlyCost;
+        card.innerHTML = `
 
+            <button class="delete-btn"
+                onclick="deleteSubscription(${sub.id})">
+                X
+            </button>
 
-     const div = document.createElement("div");
-        div.className = "item";
+            <h3>${sub.name}</h3>
 
+            <p>
+                <strong>Category:</strong>
+                ${sub.category}
+            </p>
 
-        if (sub.used === "no"){
-            div.classList.add("unused");
-        }
-        
-        div.innerHTML=`
-        <strong>${sub.name}</strong><br>
-        $${sub.monthlyCost.toFixed(2)} / month
+            <p>
+                <strong>Monthly Cost:</strong>
+                ₱${sub.cost}
+            </p>
+
+            <p>
+                <strong>Renewal Date:</strong>
+                ${sub.renewal}
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+
+                <span class="${sub.status === 'Active'
+                    ? 'active'
+                    : 'paused'}">
+
+                    ${sub.status}
+
+                </span>
+            </p>
+
+            <p class="reminder">
+
+                ${diffDays <= 7 && diffDays >= 0 && sub.status === "Active"
+                    ? `Renewing in ${diffDays} day(s)!`
+                    : ""}
+
+            </p>
+
+            <button
+                class="pause-btn"
+
+                onclick="togglePause(${sub.id})"
+
+                style="
+                    background:
+                    ${sub.status === 'Paused'
+                        ? '#16a34a'
+                        : '#f59e0b'};
+                "
+
+            >
+
+                ${sub.status === 'Paused'
+                    ? 'Resume Subscription'
+                    : 'Pause Subscription'}
+
+            </button>
+
         `;
 
-        list.appendChild(div);
+        list.appendChild(card);
+
     });
 
-    totalDisplay.innerText=`Total Monthly Burn: $${total.toFixed(2)}`;
 }
 
-function clearForm(){
-    document.getElementById("name").value="";
-    document.getElementById("cost").value="";
+function updateSummary(){
+
+    document.getElementById("totalSubs").textContent =
+        subscriptions.length;
+
+    let total = 0;
+    let renewals = 0;
+    let monthlyTotal = 0;
+
+    const today = new Date();
+
+    subscriptions.forEach(sub => {
+
+        if(sub.status === "Active"){
+
+            total += sub.cost;
+
+            monthlyTotal += sub.cost;
+        }
+
+        const renewalDate = new Date(sub.renewal);
+
+        const diffTime = renewalDate - today;
+
+        const diffDays = Math.ceil(
+            diffTime / (1000 * 60 * 60 * 24)
+        );
+
+        if(
+            diffDays <= 7 &&
+            diffDays >= 0 &&
+            sub.status === "Active"
+        ){
+            renewals++;
+        }
+
+    });
+
+    document.getElementById("totalCost").textContent =
+        total.toFixed(2);
+
+    document.getElementById("renewalCount").textContent =
+        renewals;
+
+    document.getElementById("monthlyTotal").textContent =
+        monthlyTotal.toFixed(2);
+}
+
+function togglePause(id){
+
+    subscriptions = subscriptions.map(sub => {
+
+        if(sub.id === id){
+
+            if(sub.status === "Active"){
+                sub.status = "Paused";
+            }else{
+                sub.status = "Active";
+            }
+
+        }
+
+        return sub;
+
+    });
+
+    renderSubscriptions();
+    updateSummary();
+}
+
+function deleteSubscription(id){
+
+    subscriptions = subscriptions.filter(sub =>
+        sub.id !== id
+    );
+
+    renderSubscriptions();
+    updateSummary();
 }
