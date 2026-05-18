@@ -203,3 +203,4 @@ function deleteSubscription(id){
     renderSubscriptions();
     updateSummary();
 }
+
