@@ -19,7 +19,7 @@ body{
 
 header{
     background:linear-gradient(135deg,#4f46e5,#7c3aed);
-    color:white;
+    color:rgb(255, 255, 255);
     padding:25px;
     border-radius:15px;
     text-align:center;
@@ -45,10 +45,11 @@ header p{
 
 h2{
     margin-bottom:15px;
-    color:#4f46e5;
+    color:#f5f5fa;
 }
 
 .form-group{
+    
     margin-bottom:15px;
 }
 
@@ -67,7 +68,7 @@ input, select{
 }
 
 button{
-    background:#4f46e5;
+    background:#0a4fb6;
     color:white;
     border:none;
     padding:10px 15px;
@@ -120,6 +121,7 @@ button:hover{
 }
 
 .summary{
+    
     display:flex;
     flex-wrap:wrap;
     gap:20px;
@@ -170,4 +172,8 @@ button:hover{
 .monthly-total{
     font-size:2rem;
     font-weight:bold;
+}
+.card{
+     background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:rgb(164, 116, 241);
 }
