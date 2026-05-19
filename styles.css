@@ -177,3 +177,24 @@ button:hover{
      background:linear-gradient(135deg,#4f46e5,#7c3aed);
     color:rgb(164, 116, 241);
 }
+
+/* ACTIVITY LOG */
+
+.log-container{
+    max-height:300px;
+    overflow-y:auto;
+}
+
+.log-item{
+    background:#f9fafb;
+    padding:12px;
+    border-left:5px solid #4f46e5;
+    border-radius:8px;
+    margin-bottom:10px;
+}
+
+.log-time{
+    font-size:0.8rem;
+    color:gray;
+    margin-top:5px;
+}
