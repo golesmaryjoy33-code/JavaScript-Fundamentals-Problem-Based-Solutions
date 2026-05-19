@@ -1,4 +1,5 @@
 let subscriptions = [];
+let activityLogs = [];
 
 function addSubscription(){
 
@@ -22,6 +23,8 @@ function addSubscription(){
     };
 
     subscriptions.push(subscription);
+    
+    addLog(`Added subscription: ${name}`);
 
     renderSubscriptions();
     updateSummary();
@@ -180,8 +183,14 @@ function togglePause(id){
 
             if(sub.status === "Active"){
                 sub.status = "Paused";
+            addLog(`Paused subscription: ${sub.name}`);
+
             }else{
+
                 sub.status = "Active";
+
+                addLog(`Resumed subscription: ${sub.name}`);
+
             }
 
         }
@@ -196,6 +205,12 @@ function togglePause(id){
 
 function deleteSubscription(id){
 
+    const deletedSub = subscriptions.find(
+        sub => sub.id === id
+    );
+
+    addLog(`Cancelled subscription: ${deletedSub.name}`);
+
     subscriptions = subscriptions.filter(sub =>
         sub.id !== id
     );
@@ -203,4 +218,41 @@ function deleteSubscription(id){
     renderSubscriptions();
     updateSummary();
 }
+
+function addLog(message){
+
+    const time = new Date().toLocaleString();
+
+    activityLogs.unshift({
+        message,
+        time
+    });
+
+    renderLogs();
+}
+
+function renderLogs(){
+
+    const logContainer =
+        document.getElementById("activityLog");
+
+    logContainer.innerHTML = "";
+
+    activityLogs.forEach(log => {
+
+        const logItem = document.createElement("div");
+
+        logItem.classList.add("log-item");
+
+        logItem.innerHTML = `
+            <p>${log.message}</p>
+            <p class="log-time">${log.time}</p>
+        `;
+
+        logContainer.appendChild(logItem);
+
+    });
+
+}
+
 
